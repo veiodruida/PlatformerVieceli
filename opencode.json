@@ -9,11 +9,11 @@
   },
   "mode": {
     "plan": {
-      "model": "kilo/minimax/minimax-m2.5:free",
+      "model": "openrouter/minimax/minimax-01:free",
       "temperature": 0.5
     },
     "build": {
-      "model": "kilo/deepseek/deepseek-r1",
+      "model": "openrouter/deepseek/deepseek-r1:free",
       "temperature": 0.1
     }
   },
@@ -40,7 +40,12 @@
     "openrouter": {
       "options": {
         "baseURL": "https://openrouter.ai/api/v1",
-        "apiKey": "${env:OPENROUTER_API_KEY}"
+        "apiKey": "${env:OPENROUTER_API_KEY}",
+        "headers": {
+          "Authorization": "Bearer ${env:OPENROUTER_API_KEY}",
+          "HTTP-Referer": "http://localhost",
+          "X-Title": "opencode"
+        }
       },
       "models": {
         "minimax/minimax-01:free": {
