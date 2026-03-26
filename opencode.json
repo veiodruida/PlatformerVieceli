@@ -1,0 +1,55 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "ai-game-developer": {
+      "enabled": true,
+      "type": "remote",
+      "url": "http://localhost:8080"
+    }
+  },
+  "mode": {
+    "plan": {
+      "model": "kilo/minimax/minimax-m2.5:free",
+      "temperature": 0.5
+    },
+    "build": {
+      "model": "kilo/deepseek/deepseek-r1",
+      "temperature": 0.1
+    }
+  },
+  "command": {
+    "clean": {
+      "description": "Limpa o cache da Unity (Library, UserSettings, obj) para resolver erros de importação.",
+      "agent": "build",
+      "template": "Use a ferramenta bash para deletar as pastas 'Library', 'UserSettings' e 'obj' na raiz do projeto Unity. Após deletar, confirme que o projeto está pronto para uma reimportação limpa."
+    }
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen2.5-coder:14b-instruct-q4_K_M": {
+          "name": "qwen2.5-coder:14b"
+        }
+      }
+    },
+    "openrouter": {
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKey": "${env:OPENROUTER_API_KEY}"
+      },
+      "models": {
+        "minimax/minimax-01:free": {
+          "name": "MiniMax M2.5"
+        },
+        "deepseek/deepseek-r1:free": {
+          "name": "DeepSeek R1"
+        }
+      }
+    }
+  }
+}
