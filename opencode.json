@@ -9,11 +9,11 @@
   },
   "mode": {
     "plan": {
-      "model": "openrouter/minimax/minimax-01:free",
+      "model": "openrouter/stepfun/step-3.5-flash:free",
       "temperature": 0.5
     },
     "build": {
-      "model": "openrouter/deepseek/deepseek-r1:free",
+      "model": "openrouter/stepfun/step-3.5-flash:free",
       "temperature": 0.1
     }
   },
