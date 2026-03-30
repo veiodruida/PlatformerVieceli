@@ -181,9 +181,11 @@ public class Health : MonoBehaviour
         if (currentHealth > maximumHealth)
         {
             currentHealth = maximumHealth;
+          //  return false;
         }
         CheckDeath();
         GameManager.UpdateUIElements();
+        //return true;
     }
 
     /// <summary>
