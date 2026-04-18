@@ -2842,7 +2842,7 @@ Tilemap:
       - {fileID: -533765841, guid: d03a283a9aca84f93a538b8f39b95b9e, type: 3}
       - {fileID: -1231162304, guid: d03a283a9aca84f93a538b8f39b95b9e, type: 3}
       - {fileID: 1397510095, guid: d03a283a9aca84f93a538b8f39b95b9e, type: 3}
-      m_AnimationSpeed: 1.5940807
+      m_AnimationSpeed: 4.302075
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: 0, z: 0}
@@ -2853,7 +2853,7 @@ Tilemap:
       - {fileID: 1514861120, guid: d03a283a9aca84f93a538b8f39b95b9e, type: 3}
       - {fileID: -640458271, guid: d03a283a9aca84f93a538b8f39b95b9e, type: 3}
       - {fileID: 682883953, guid: d03a283a9aca84f93a538b8f39b95b9e, type: 3}
-      m_AnimationSpeed: 8.728986
+      m_AnimationSpeed: 2.5170097
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -3494,7 +3494,7 @@ Tilemap:
       - {fileID: 3560201393318554091, guid: 4ad88221e1c93ac4484990c1fcd8959b, type: 3}
       - {fileID: 9100158807113906677, guid: 4ad88221e1c93ac4484990c1fcd8959b, type: 3}
       - {fileID: 7187093909269909514, guid: 4ad88221e1c93ac4484990c1fcd8959b, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: -3, z: 0}
@@ -4699,6 +4699,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1680851087}
     m_Modifications:
+    - target: {fileID: 1167797280935117621, guid: 8ae4b22b07f2f8143a8eb37211ab517f, type: 3}
+      propertyPath: useLives
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1668180095173353846, guid: 8ae4b22b07f2f8143a8eb37211ab517f, type: 3}
       propertyPath: m_Name
       value: BasicWalkingEnemy

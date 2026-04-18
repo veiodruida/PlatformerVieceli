@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Egg Enemy Animator Override Controller
+  m_Controller: {fileID: 9100000, guid: de4903c89b0f99847a3880a316d36bcc, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c4b51d994a9d3924bad9f5938fcd15dc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 36be6ec101e109647989c5013cb5c0d1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 652574be6441832498dcebd2044cdb33, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a6dd603c6320bd48b51a8bc636f8b92, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3711cb781707a4146a55f1e8ac93ab83, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 429a481b6d3c613489d10a5e117c7fbd, type: 2}

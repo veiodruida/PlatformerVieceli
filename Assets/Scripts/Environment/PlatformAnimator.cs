@@ -45,4 +45,6 @@ public class PlatformAnimator : MonoBehaviour
             animator.SetBool("isMoving", !mover.stopped);
         }
     }
+
+     
 }

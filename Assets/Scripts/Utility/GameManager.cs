@@ -1,10 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 /// <summary>
 /// Class which manages the game
@@ -37,6 +38,10 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("The highest score acheived on this device")]
     public int highScore = 0;
+
+    [Header("Timer / Run Tracking")]
+    [Tooltip("The time played in the current run")]
+    public float timePlayed = 0f;
 
     [Header("Game Progress / Victory Settings")]
     [Tooltip("Whether the game is winnable or not \nDefault: true")]
@@ -94,7 +99,22 @@ public class GameManager : MonoBehaviour
         {
             score = PlayerPrefs.GetInt("score");
         }
+        if (PlayerPrefs.HasKey("timePlayed"))
+        {
+            timePlayed = PlayerPrefs.GetFloat("timePlayed");
+        }
         InitilizeGamePlayerPrefs();
+    }
+
+    /// <summary>
+    /// Tracks time played when the player is active
+    /// </summary>
+    private void Update()
+    {
+        if (!gameIsOver && player != null && player.activeInHierarchy)
+        {
+            timePlayed += Time.deltaTime;
+        }
     }
 
     /// <summary>
@@ -145,6 +165,7 @@ public class GameManager : MonoBehaviour
             Health playerHealth = player.GetComponent<Health>();
             PlayerPrefs.SetInt("lives", playerHealth.currentLives);
             PlayerPrefs.SetInt("health", playerHealth.currentHealth);
+            PlayerPrefs.SetFloat("timePlayed", timePlayed);
         }
     }
 
@@ -189,7 +210,9 @@ public class GameManager : MonoBehaviour
     public void LevelCleared()
     {
         PlayerPrefs.SetInt("score", score);
+        PlayerPrefs.SetFloat("timePlayed", timePlayed);
         SetGamePlayerPrefs();
+        SaveToScoreBoard();
         if (UIManager.instance != null)
         {
             player.SetActive(false);
@@ -223,6 +246,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameIsOver = true;
+        SaveToScoreBoard();
         if (gameOverEffect != null)
         {
             Instantiate(gameOverEffect, transform.position, transform.rotation, null);
@@ -281,6 +305,11 @@ public class GameManager : MonoBehaviour
         score = 0;
         PlayerPrefs.SetInt("lives", 0);
         PlayerPrefs.SetInt("health", 0);
+        PlayerPrefs.SetFloat("timePlayed", 0f);
+        if (instance != null)
+        {
+            instance.timePlayed = 0f;
+        }
     }
 
     /// <summary>
@@ -318,4 +347,52 @@ public class GameManager : MonoBehaviour
         }
         UpdateUIElements();
     }
+
+    /// <summary>
+    /// Saves the current score and time to the top-10 Leaderboard JSON
+    /// </summary>
+    public void SaveToScoreBoard()
+    {
+        string currentJson = PlayerPrefs.GetString("HighscoreBoard", "");
+        ScoreBoardData data;
+
+        if (string.IsNullOrEmpty(currentJson))
+        {
+            data = new ScoreBoardData();
+        }
+        else
+        {
+            data = JsonUtility.FromJson<ScoreBoardData>(currentJson);
+        }
+
+        // Add current entry
+        data.entries.Add(new ScoreEntry { score = score, time = timePlayed });
+
+        // Sort descending by score. If ties, lower time is better
+        data.entries = data.entries.OrderByDescending(e => e.score).ThenBy(e => e.time).ToList();
+
+        // Keep maximum of 10 entries
+        if (data.entries.Count > 10)
+        {
+            data.entries = data.entries.Take(10).ToList();
+        }
+
+        // Save back to JSON
+        string newJson = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString("HighscoreBoard", newJson);
+        PlayerPrefs.Save();
+    }
+}
+
+[Serializable]
+public class ScoreEntry
+{
+    public int score;
+    public float time;
+}
+
+[Serializable]
+public class ScoreBoardData
+{
+    public List<ScoreEntry> entries = new List<ScoreEntry>();
 }

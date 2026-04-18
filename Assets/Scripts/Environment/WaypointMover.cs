@@ -1,208 +1,87 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-Change Log:
-Date            Change                              Author
-6/27/23         Added BeginWait to start of         Kelsi Levine
-                InitializeInformation to prevent
-                split second of movement animation
-                at beginning of play mode
-
-
-*/
 /// <summary>
-/// This class handles moving the attached game object between waypoints
+/// Handles movement along waypoints using MovePosition for perfect linear precision.
+/// Automatically cleans up conflicting movement scripts.
 /// </summary>
+[RequireComponent(typeof(Rigidbody2D))]
 public class WaypointMover : MonoBehaviour
 {
     [Header("Settings")]
-    [Tooltip("A list of transforms to move between")]
-    public List<Transform> waypoints;
-    [Tooltip("How fast to move the platform")]
-    public float moveSpeed = 1f;
-    [Tooltip("How long to wait when arriving at a waypoint")]
-    public float waitTime = 3f;
+    public List<Transform> waypoints = new List<Transform>();
+    public float moveSpeed = 4f;
+    public float waitTime = 1f;
 
-    // The time at which movement is resumed
-    private float timeToStartMovingAgain = 0f;
-    // Whether or not the waypoint mover is stopped
-    [HideInInspector]
+    [Header("State")]
     public bool stopped = false;
-
-    // The previous waypoint or the starting position
-    private Vector3 previousTarget;
-    // The current waypoint being moved to
-    private Vector3 currentTarget;
-    // The index of the current Target ub tge waypoints list
-    private int currentTargetIndex;
-    // The current direction being travelled in
-    [HideInInspector]
     public Vector3 travelDirection;
 
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once before the first update
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
+    private Rigidbody2D rb;
+    private int currentWaypointIndex = 0;
+    private Vector2 targetPos;
+
     void Start()
     {
-        InitializeInformation();
-    }
-
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once every frame
-    /// Input:
-    /// none
-    /// Return:
-    /// void
-    /// </summary>
-    void Update()
-    {
-        ProcessMovementState();
-    }
-
-    /// <summary>
-    /// Description:
-    /// Processes current state and does movement accordingly
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    void ProcessMovementState()
-    {
-        if (stopped)
+        rb = GetComponent<Rigidbody2D>();
+        
+        if (rb != null)
         {
-            StartCheck();
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.simulated = true;
+            rb.gravityScale = 0;
+            rb.freezeRotation = true;
+            rb.useFullKinematicContacts = false; // Stay false for waypoint precision
         }
-        else
-        {
-            Travel();
-        }
-    }
 
+        DisableConflicts();
 
-    /// <summary>
-    /// Description:
-    /// Checks to see if the waypoint mover can start movement again
-    /// Input:
-    /// none:
-    /// return:
-    /// void (no return)
-    /// </summary>
-    void StartCheck()
-    {
-        if (Time.time >= timeToStartMovingAgain)
-        {
-            stopped = false;
-            previousTarget = currentTarget;
-            currentTargetIndex += 1;
-            if (currentTargetIndex >= waypoints.Count)
-            {
-                currentTargetIndex = 0;
-            }
-            currentTarget = waypoints[currentTargetIndex].position;
-            CalculateTravelInformation();
-        }
-    }
-
-    /// <summary>
-    /// Description:
-    /// Sets up the first previous target and current target
-    /// then calls CalculateTravelInformation to initilize travel direction 
-    /// Inuputs:
-    /// none
-    /// Returns:
-    /// void (no return)
-    /// </summary>
-    void InitializeInformation()
-    {
-        BeginWait();
-        previousTarget = this.transform.position;
-        currentTargetIndex = 0;
         if (waypoints.Count > 0)
         {
-            currentTarget = waypoints[0].position;
+            targetPos = waypoints[currentWaypointIndex].position;
         }
-        else
-        {
-            waypoints.Add(this.transform);
-            currentTarget = previousTarget;
-        }
-
-        CalculateTravelInformation();
     }
 
-    /// <summary>
-    /// Description:
-    /// Calculates the current traveling direction using the previousTarget and the currentTarget
-    /// Inuputs:
-    /// none
-    /// Returns:
-    /// void (no return)
-    /// </summary>
-    void CalculateTravelInformation()
+    private void DisableConflicts()
     {
-        travelDirection = (currentTarget - previousTarget).normalized;
+        var walking = GetComponent<WalkingEnemy>();
+        if (walking != null) walking.enabled = false;
+        
+        var flying = GetComponent<FlyingEnemy>();
+        if (flying != null) flying.enabled = false;
     }
 
-    /// <summary>
-    /// Description:
-    /// Translates the transform in the direction towards the next waypoint
-    /// Input:
-    /// none
-    /// Returns:
-    /// void
-    /// </summary>
-    void Travel()
+    void FixedUpdate()
     {
-        transform.Translate(travelDirection * moveSpeed * Time.deltaTime);
-        bool overX = false;
-        bool overY = false;
-        bool overZ = false;
+        if (stopped || waypoints.Count == 0) return;
 
-        Vector3 directionFromCurrentPositionToTarget = currentTarget - transform.position;
+        Vector2 currentPos = rb.position;
+        targetPos = waypoints[currentWaypointIndex].position;
 
-        if ((directionFromCurrentPositionToTarget.x <= 0.0001 && directionFromCurrentPositionToTarget.x >= -0.0001) || Mathf.Sign(directionFromCurrentPositionToTarget.x) != Mathf.Sign(travelDirection.x))
-        {
-            overX = true;
-            transform.position = new Vector3(currentTarget.x, transform.position.y, transform.position.z);
-        }
-        if ((directionFromCurrentPositionToTarget.y <= 0.0001 && directionFromCurrentPositionToTarget.y >= -0.0001) || Mathf.Sign(directionFromCurrentPositionToTarget.y) != Mathf.Sign(travelDirection.y))
-        {
-            overY = true;
-            transform.position = new Vector3(transform.position.x, currentTarget.y, transform.position.z);
-        }
-        if ((directionFromCurrentPositionToTarget.z <= 0.0001 && directionFromCurrentPositionToTarget.z >= -0.0001) || Mathf.Sign(directionFromCurrentPositionToTarget.z) != Mathf.Sign(travelDirection.z))
-        {
-            overZ = true;
-            transform.position = new Vector3(transform.position.x, transform.position.y, currentTarget.z);
-        }
+        // Visual direction for animators
+        travelDirection = ((Vector3)targetPos - (Vector3)currentPos).normalized;
 
-        // If we are over the x, y, and z of our target we need to stop
-        if (overX && overY && overZ)
+        // Precise linear movement
+        Vector2 nextPos = Vector2.MoveTowards(currentPos, targetPos, moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(nextPos);
+
+        // Reach check
+        if (Vector2.Distance(nextPos, targetPos) < 0.01f)
         {
             BeginWait();
         }
     }
 
-    /// <summary>
-    /// Description:
-    /// Starts the waiting, sets up the needed variables for waiting
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
     void BeginWait()
     {
         stopped = true;
-        timeToStartMovingAgain = Time.time + waitTime;
+        Invoke("EndWait", waitTime);
+    }
+
+    void EndWait()
+    {
+        stopped = false;
+        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Count;
     }
 }

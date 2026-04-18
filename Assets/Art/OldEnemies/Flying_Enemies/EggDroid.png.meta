@@ -99,7 +99,7 @@ TextureImporter:
       213: 8454772015314050729
     second: EggDroid_15
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -116,11 +116,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -159,8 +160,10 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -170,9 +173,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -182,9 +186,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -194,13 +199,53 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EggDroid_0
+      name: EggDroid_Idle1
       rect:
         serializedVersion: 2
         x: 0
@@ -208,8 +253,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -221,7 +267,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_1
+      name: EggDroid_Idle2
       rect:
         serializedVersion: 2
         x: 40
@@ -229,8 +275,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -242,7 +289,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_2
+      name: EggDroid_Idle3
       rect:
         serializedVersion: 2
         x: 80
@@ -250,8 +297,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -263,7 +311,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_3
+      name: EggDroid_Idle4
       rect:
         serializedVersion: 2
         x: 120
@@ -271,8 +319,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -284,7 +333,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_4
+      name: EggDroid_Moving1
       rect:
         serializedVersion: 2
         x: 160
@@ -292,8 +341,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -305,7 +355,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_5
+      name: EggDroid_Moving2
       rect:
         serializedVersion: 2
         x: 200
@@ -313,8 +363,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -326,7 +377,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_6
+      name: EggDroid_Moving3
       rect:
         serializedVersion: 2
         x: 240
@@ -334,8 +385,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -347,7 +399,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_7
+      name: EggDroid_Moving4
       rect:
         serializedVersion: 2
         x: 280
@@ -355,8 +407,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -368,7 +421,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_8
+      name: EggDroid_Death1
       rect:
         serializedVersion: 2
         x: 320
@@ -376,8 +429,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -389,7 +443,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_9
+      name: EggDroid_Death2
       rect:
         serializedVersion: 2
         x: 360
@@ -397,8 +451,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -410,7 +465,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_10
+      name: EggDroid_Death3
       rect:
         serializedVersion: 2
         x: 400
@@ -418,8 +473,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -431,7 +487,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_11
+      name: EggDroid_Death4
       rect:
         serializedVersion: 2
         x: 440
@@ -439,8 +495,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -452,7 +509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_12
+      name: EggDroid_Death5
       rect:
         serializedVersion: 2
         x: 480
@@ -460,8 +517,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -473,7 +531,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_13
+      name: EggDroid_Death6
       rect:
         serializedVersion: 2
         x: 520
@@ -481,8 +539,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -494,7 +553,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_14
+      name: EggDroid_Death7
       rect:
         serializedVersion: 2
         x: 560
@@ -502,8 +561,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -515,7 +575,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EggDroid_15
+      name: EggDroid_Death8
       rect:
         serializedVersion: 2
         x: 600
@@ -523,8 +583,9 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -536,6 +597,7 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -545,26 +607,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      EggDroid_6: 4150986967214596146
-      EggDroid_8: -7236659098699532923
-      EggDroid_5: 4703419093231340070
-      EggDroid_10: 8988079909547053587
-      EggDroid_11: -1215959428407645052
-      EggDroid_14: -8048523756660614296
-      EggDroid_2: 1226262198232191812
-      EggDroid_4: 8098584922742420115
-      EggDroid_7: -1484698773210828482
-      EggDroid_1: 3597082019748019986
-      EggDroid_9: 4071688724520186397
-      EggDroid_15: -2491160852130585989
-      EggDroid_12: 3886061100909830653
-      EggDroid_0: -420513148762684949
-      EggDroid_13: -8590518360226938555
-      EggDroid_3: 3473420594773702576
-  spritePackingTag: 
+      EggDroid_Death1: -7236659098699532923
+      EggDroid_Death2: 4071688724520186397
+      EggDroid_Death3: 8988079909547053587
+      EggDroid_Death4: -1215959428407645052
+      EggDroid_Death5: 3886061100909830653
+      EggDroid_Death6: -8590518360226938555
+      EggDroid_Death7: -8048523756660614296
+      EggDroid_Death8: -2491160852130585989
+      EggDroid_Idle1: -420513148762684949
+      EggDroid_Idle2: 3597082019748019986
+      EggDroid_Idle3: 1226262198232191812
+      EggDroid_Idle4: 3473420594773702576
+      EggDroid_Moving1: 8098584922742420115
+      EggDroid_Moving2: 4703419093231340070
+      EggDroid_Moving3: 4150986967214596146
+      EggDroid_Moving4: -1484698773210828482
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

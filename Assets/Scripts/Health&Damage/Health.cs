@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// This class handles the health state of a game object.
@@ -216,6 +217,10 @@ public class Health : MonoBehaviour
     [Tooltip("The effect to create when this health is damaged (but does not die)")]
     public GameObject hitEffect;
 
+    [Header("Events")]
+    [Tooltip("Event fired right before this object dies (e.g. to drop items)")]
+    public UnityEvent onDie;
+
     /// <summary>
     /// Description:
     /// Checks if the health is dead or not. If it is, true is returned, false otherwise.
@@ -247,6 +252,8 @@ public class Health : MonoBehaviour
     /// </summary>
     void Die()
     {
+        onDie?.Invoke();
+
         if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, transform.rotation, null);
